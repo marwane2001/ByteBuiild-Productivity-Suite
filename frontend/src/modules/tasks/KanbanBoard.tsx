@@ -1,5 +1,17 @@
-import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import React, { useState } from 'react';
+import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import KanbanColumn from './KanbanColumn';
+
+type Column = {
+  id: string;
+  title: string;
+  tasks: Task[];
+};
+
+type Task = {
+  id: string;
+  content: string;
+};
 
 export default function KanbanBoard() {
   const [columns, setColumns] = useState<Column[]>([
@@ -7,6 +19,10 @@ export default function KanbanBoard() {
     { id: 'progress', title: 'In Progress', tasks: [] },
     { id: 'done', title: 'Done', tasks: [] },
   ]);
+
+  const handleDragEnd = (result: DropResult) => {
+    // Implement your drag-and-drop logic here
+  };
 
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
